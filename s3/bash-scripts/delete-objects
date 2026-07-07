@@ -1,0 +1,28 @@
+#!/urs/bin/env bash
+echo "== delect-objects"
+# Exits immediately if any command returns a non-zero status
+set -e 
+
+#check for bucket name
+if [ -z "$1" ]
+then
+    echo "There needs to be a bucket name eg../bucket-my-bucket-name"
+    exit 1
+fi
+
+#check for filename prefix
+if [ -z "$2" ]
+then
+    echo "There needs to be a filename prefix eg. ./bucket my-bucket-name my-filename prefix"
+    exit 1
+fi
+
+BUCKET_NAME=$1
+
+
+aws s3api list-objects-v2 \
+--bucket $BUCKET_NAME \
+--query Contents[].Key \
+| jq -n '{Objects: [inputs | .[] | {Key: .}]}'
+
+#aws s3api delete-objects --bucket $BUCKET_NAME
