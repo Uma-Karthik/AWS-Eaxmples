@@ -1,0 +1,10 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: A simple S3 Bucket
+Resources:
+  S3Bucket:
+  # https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html
+    Type: 'AWS::S3::Bucket'
+  # we don't need to supply a Bucket Name as AWS will generate a random name for us.
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: DOC-EXAMPLE-BUCKET
