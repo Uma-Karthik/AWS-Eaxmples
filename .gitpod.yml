@@ -1,4 +1,4 @@
 task
 - name: aws-cli
 env:
-AWS_CLI_ATUO_PROMPT=on-partial
+AWS_CLI_ATUO_PROMPT: on-partial
